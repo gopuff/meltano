@@ -48,6 +48,9 @@ def build_webapp() -> None:
 
 def include_webapp() -> None:
     """Copy the built webapp into the source tree."""
+    if not os.path.exists("src/webapp/dist/index.html"):
+        warn("Failed to find Meltano UI webapp; skipping inclusion.", Warning)
+        return
     os.makedirs("src/meltano/api/templates", exist_ok=True)
     shutil.copy(
         "src/webapp/dist/index.html",
