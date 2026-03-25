@@ -40,6 +40,8 @@ jobs:
           is-default-python: false
         - python-version: "3.11"
           is-default-python: false
+        - python-version: "3.12"
+          is-default-python: false
 
     steps:
     - name: Set the workflow inputs

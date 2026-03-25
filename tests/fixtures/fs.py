@@ -3,7 +3,6 @@ from __future__ import annotations
 import os
 import shutil
 import sys
-from distutils import dir_util
 from functools import partial
 from pathlib import Path
 
@@ -19,9 +18,11 @@ def compatible_copy_tree():
     def _compatible_copy_tree(source: Path, destination: Path):
         """Copy files recursively from source to destination, ignoring existing dirs."""
         if sys.version_info >= (3, 8):
-            # shutil.copytree option `dirs_exist_ok` was added in python3.8
             shutil.copytree(source, destination, dirs_exist_ok=True)
         else:
+            # distutils was removed in Python 3.12; this branch only runs on 3.7
+            from distutils import dir_util  # noqa: WPS433
+
             dir_util.copy_tree(str(source), str(destination))
 
     return _compatible_copy_tree
