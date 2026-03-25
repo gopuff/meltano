@@ -3988,4 +3988,4 @@ s3 = ["boto3"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.7,<3.13"
-content-hash = "3f6e8f4728780f8a85f6ffee9593df2dca5f37f5da667e669e9c33ac45f0c19f"
+content-hash = "31e91b19b424ecb9c32f0de695f70de4eb26d2779a17811de663af6c548a101a"
