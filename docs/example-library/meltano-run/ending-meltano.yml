@@ -10,7 +10,7 @@ plugins:
   loaders:
   - name: target-postgres
     variant: transferwise
-    pip_url: pipelinewise-target-postgres setuptools<81
+    pip_url: pipelinewise-target-postgres
   transformers:
   - name: dbt-postgres
     variant: dbt-labs
