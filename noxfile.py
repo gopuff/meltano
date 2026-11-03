@@ -41,6 +41,8 @@ def tests(session: Session) -> None:
         session.install(".[azure,gcs,s3]")
 
     session.install(
+        # pkg_resources, needed by flask_security; data-platform's image pins the same
+        "setuptools<81",
         "colorama",  # colored output in Windows
         "freezegun",
         "mock",

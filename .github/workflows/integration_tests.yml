@@ -71,6 +71,8 @@ jobs:
       run: |
         poetry env use "3.12"
         poetry install --extras "s3"
+        # pkg_resources, needed by flask_security; data-platform's image pins the same
+        poetry run pip install "setuptools<81"
 
     - name: Start Postgres Container
       if: always() && (matrix.needs_postgres == true)
