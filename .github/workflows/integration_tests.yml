@@ -89,3 +89,10 @@ jobs:
       run: |
         poetry env use "3.12"
         poetry run bash integration/validate.sh ${{ matrix.integration_test }}
+
+    - name: Show plugin venv packages
+      if: failure()
+      run: |
+        for sp in docs/example-library/${{ matrix.integration_test }}/.meltano/*/*/venv/lib/python*/site-packages; do
+          echo "== $sp"; ls "$sp" | grep -iE "setuptools|distutils|\.pth$" || true
+        done
