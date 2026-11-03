@@ -57,7 +57,8 @@ def venv_platform_specs():
         raise Exception(f"Platform {system!r} not supported.") from ex
 
 
-PIP_PACKAGES = ("pip", "setuptools==57.5.0", "wheel")
+# setuptools 80 is the last release with pkg_resources and still shims distutils on Python 3.12; plugins import both
+PIP_PACKAGES = ("pip", "setuptools==80.10.2", "wheel")
 
 
 class VirtualEnv:
