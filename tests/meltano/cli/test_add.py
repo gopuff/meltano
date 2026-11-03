@@ -490,6 +490,8 @@ class TestCliAdd:
                     "--variant",
                     "personal",
                 ],
+                # accept every prompt's default; click 8.2+ aborts prompts on EOF
+                input="\n" * 10,
             )
             assert_cli_runner(res)
 

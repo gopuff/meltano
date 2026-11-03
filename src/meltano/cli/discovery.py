@@ -16,7 +16,9 @@ from meltano.core.project import Project
     short_help="List the available plugins in Meltano Hub and their variants.",
 )
 @click.argument(
-    "plugin_type", type=click.Choice([*list(PluginType), "all"]), default="all"
+    "plugin_type",
+    type=click.Choice([*(plugin_type.value for plugin_type in PluginType), "all"]),
+    default="all",
 )
 @pass_project()
 @click.pass_context
