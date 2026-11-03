@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Changelog](http://keepachangelog.com/).
 
+## v2.16.0+gopuff.1 (2026-11-03)
+
+gopuff fork of upstream v2.16.0. Versions are `v<upstream>+gopuff.<n>`: bump `<n>` for each gopuff change on
+`v_2_16`, update every file in `[tool.commitizen].version_files`, then tag the merge commit `v<version>`.
+data-platform pins the tag in `postgres_replication_v2/requirements.txt`.
+
+### Changes
+
+- Python 3.12 support: CI matrix and docs, `croniter`, `email-validator` and `snowplow-tracker` constraints relaxed
+  to `>=`, Snowplow tracker given an explicit `namespace`, and `scripts/build.py` skips the webapp when it is not built
+
 ## v2.16.0 (2023-02-21)
 
 ### ✨ New
