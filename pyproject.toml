@@ -112,6 +112,8 @@ repl = ["ipython"]
 s3 = ["boto3"]
 
 [tool.poetry.group.dev.dependencies]
+# pkg_resources, needed by flask_security; data-platform's image pins the same
+setuptools = "<81"
 black = "^22.3.0"
 bumpversion = "^0.6.0"
 colorama = "^0.4.4"

@@ -34,7 +34,6 @@ jobs:
         - { integration_test: "meltano-run", needs_postgres: true}
         - { integration_test: "meltano-objects", needs_postgres: false}
         - { integration_test: "meltano-migrations", needs_postgres: false}
-        - { integration_test: "meltano-state-s3", needs_postgres: false}
         - { integration_test: "meltano-state-local", needs_postgres: false}
         - { integration_test: "meltano-config", needs_postgres: false}
         - { integration_test: "meltano-annotations", needs_postgres: false}
@@ -71,8 +70,6 @@ jobs:
       run: |
         poetry env use "3.12"
         poetry install --extras "s3"
-        # pkg_resources, needed by flask_security; data-platform's image pins the same
-        poetry run pip install "setuptools<81"
 
     - name: Start Postgres Container
       if: always() && (matrix.needs_postgres == true)

@@ -10,7 +10,7 @@ plugins:
   loaders:
   - name: target-postgres
     variant: transferwise
-    pip_url: pipelinewise-target-postgres
+    pip_url: pipelinewise-target-postgres setuptools<81
 environments:
 - name: dev
   config:
