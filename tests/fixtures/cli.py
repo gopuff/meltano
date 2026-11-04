@@ -41,7 +41,7 @@ def cli_runner(pushd, snowplow_optional: SnowplowMicro | None):
     root_logger = logging.getLogger()
     log_level = root_logger.level
     try:
-        yield MeltanoCliRunner(mix_stderr=False, snowplow=snowplow_optional)
+        yield MeltanoCliRunner(snowplow=snowplow_optional)
     finally:
         root_logger.setLevel(log_level)
 
