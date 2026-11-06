@@ -1,6 +1,6 @@
 # Get setup
 
-This examples shows to how to get up and running using `meltano run` with `tap-gitlab`, `target-postgres` and `dbt`.
+This examples shows to how to get up and running using `meltano run` with `tap-gitlab` and `target-postgres`.
 To get started with this example download the [meltano yml](/docs/example-library/meltano-run/meltano.yml) to a fresh directory and run:
 
 ```shell
@@ -58,61 +58,8 @@ You can reference jobs in `meltano run` invocations directly:
 meltano run --dry-run gitlab-to-postgres
 ```
 
-## Getting `dbt` involved
-
-The meltano.yml didn't include dbt, so let's install that and get it configured to use our database:
-
-```shell
-meltano add transformer dbt-postgres
-meltano --environment=dev config dbt-postgres set host localhost
-meltano --environment=dev config dbt-postgres set user postgres
-meltano --environment=dev config dbt-postgres set password postgres
-meltano --environment=dev config dbt-postgres set port 5432
-meltano --environment=dev config dbt-postgres set dbname warehouse
-meltano --environment=dev config dbt-postgres set schema analytics
-```
-
-### Prep the `dbt` transform for this demo
-
-```shell
-mkdir ./transform/models/tap_gitlab
-touch  ./transform/models/tap_gitlab/source.yml
-```
-
-```shell
-tee -a ./transform/models/tap_gitlab/source.yml << END
-config-version: 2
-version: 2
-sources:
-  - name: tap_gitlab
-    schema: public
-    tables:
-      - name: commits
-END
-```
-
-### Add a demo model
-
-```shell
-touch  ./transform/models/tap_gitlab/commits_last_7d.sql
-```
-
-```shell
-tee -a ./transform/models/tap_gitlab/commits_last_7d.sql << END
-{{
-  config(
-    materialized='table'
-  )
-}}
-
-select *
-from {{ source('tap_gitlab', 'commits') }}
-where created_at::date >= current_date - interval '7 days'
-END
-```
-
 # Pulling it all together
 
 ```shell
-meltano run gitlab-to-postgres dbt-postgres:test dbt-postgres:run
+meltano run gitlab-to-postgres
 ```
