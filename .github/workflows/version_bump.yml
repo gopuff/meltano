@@ -59,7 +59,7 @@ jobs:
 
     - name: Draft Release
       id: draft-release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v3
       with:
         draft: true
         body_path: _changelog_fragment.md
