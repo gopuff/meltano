@@ -261,7 +261,7 @@ jobs:
         cache-dependency-path: 'poetry.lock'
 
     - name: Download coverage data
-      uses: actions/download-artifact@v3.0.2
+      uses: actions/download-artifact@v8.0.2
       with:
         name: coverage-data
 
